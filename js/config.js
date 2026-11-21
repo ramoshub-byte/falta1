@@ -8,6 +8,6 @@
  * NUNCA coloques aqui a chave "service_role".
  */
 window.PADEL_CONFIG = {
-  supabaseUrl: '',
-  supabaseAnonKey: ''
+  supabaseUrl: 'https://axixzvugqrbhgkzsxkmr.supabase.co/rest/v1/',
+  supabaseAnonKey: 'sb_publishable_6DD2lV5qUC_3-Ppg98-4eg_fY5Mu2qN'
 };
