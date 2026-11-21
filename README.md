@@ -1,4 +1,4 @@
-# I Want to Play Padle — POC (piloto Chaves)
+# Falta 1 — POC (piloto Chaves)
 
 Diz à app que queres jogar, sozinho ou com o teu parceiro. Ela junta os 4 jogadores pelo nível, lado, horário e distância, e depois propõe o campo num mapa.
 

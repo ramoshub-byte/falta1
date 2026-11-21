@@ -7,7 +7,7 @@ Leva cerca de 10 minutos.
 
 1. Vai a [supabase.com](https://supabase.com) e entra com a tua conta do GitHub (é grátis).
 2. **New project**
-   - Name: `iwanttoplaypadle`
+   - Name: `falta1`
    - Database password: gera uma e guarda-a num sítio seguro
    - Region: **West EU (Ireland)** ou **Central EU (Frankfurt)**
 3. Espera 1–2 minutos até o projeto ficar pronto.
@@ -44,6 +44,8 @@ A chave `anon` pode ficar pública: quem protege os dados são as regras do `sch
 ## 5. Publicar
 
 Faz commit e push. O GitHub Pages atualiza sozinho em 1–2 minutos.
+
+O repositório chama-se `falta1`, por isso a app fica em `https://ramoshub-byte.github.io/falta1/`.
 
 ## Se já tinhas corrido o schema.sql antes
 

@@ -1,4 +1,4 @@
-/* Marcador de padel — I Want to Play Padle (POC)
+/* Marcador de padel — Falta 1 (POC)
  *
  * O jogo guarda só a lista de pontos ('a' ou 'b'). O marcador é recalculado a partir dela,
  * por isso "anular" é só tirar o último ponto, e o estado sobrevive a um recarregar da página.

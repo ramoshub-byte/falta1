@@ -1,4 +1,4 @@
-/* I Want to Play Padle — app (piloto Chaves)
+/* Falta 1 — app (piloto Chaves)
  * Os dados passam todos por window.Backend (js/backend.js):
  *  - modo demonstração: neste browser, com jogadores fictícios;
  *  - modo Supabase: contas reais, convites e feedback partilhados.
@@ -12,8 +12,8 @@
 
   // Preferências da interface (modo sozinho/dupla, parceiro) — ficam sempre neste dispositivo.
   const prefs = {
-    get() { try { return JSON.parse(localStorage.getItem('iwtpp:prefs')) || {}; } catch (e) { return {}; } },
-    set(v) { try { localStorage.setItem('iwtpp:prefs', JSON.stringify(v)); } catch (e) { /* sem armazenamento */ } }
+    get() { try { return JSON.parse(localStorage.getItem('falta1:prefs')) || {}; } catch (e) { return {}; } },
+    set(v) { try { localStorage.setItem('falta1:prefs', JSON.stringify(v)); } catch (e) { /* sem armazenamento */ } }
   };
 
   const state = {
@@ -582,7 +582,7 @@
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && location.hash === '#marcador' && !wakeLock) keepAwake(); });
 
   const scoreStore = {
-    key: (id) => 'iwtpp:score:' + id,
+    key: (id) => 'falta1:score:' + id,
     get(id) { try { return JSON.parse(localStorage.getItem(this.key(id))); } catch (e) { return null; } },
     set(id, v) { try { localStorage.setItem(this.key(id), JSON.stringify(v)); } catch (e) { /* sem armazenamento */ } },
     clear(id) { try { localStorage.removeItem(this.key(id)); } catch (e) { /* idem */ } }

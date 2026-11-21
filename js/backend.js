@@ -23,7 +23,7 @@
 
   // ---------------------------------------------------------------- modo demonstração
   function createLocal() {
-    const KEY = 'iwtpp:';
+    const KEY = 'falta1:';
     const get = (k, d) => { try { const v = localStorage.getItem(KEY + k); return v ? JSON.parse(v) : d; } catch (e) { return d; } };
     const set = (k, v) => { try { localStorage.setItem(KEY + k, JSON.stringify(v)); } catch (e) { /* sem armazenamento */ } };
     const ME = { id: 'me', email: null };

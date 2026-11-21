@@ -1,4 +1,4 @@
--- I Want to Play Padle — esquema da base de dados (Supabase / Postgres)
+-- Falta 1 — esquema da base de dados (Supabase / Postgres)
 -- Como usar: Supabase → SQL Editor → New query → colar este ficheiro inteiro → Run.
 -- Pode ser corrido mais do que uma vez (apaga e recria as funções; as tabelas só são criadas se não existirem).
 

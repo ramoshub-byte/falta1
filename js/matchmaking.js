@@ -1,4 +1,4 @@
-/* Motor de matchmaking — I Want to Play Padle (POC)
+/* Motor de matchmaking — Falta 1 (POC)
  *
  * Entrada: o jogador que quer jogar (sozinho ou com parceiro), a lista de jogadores e de clubes.
  * Saída: até N jogos propostos. Cada jogo tem um horário, duas equipas e os clubes possíveis

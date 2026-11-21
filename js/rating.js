@@ -1,4 +1,4 @@
-/* Motor de nível — I Want to Play Padle (POC)
+/* Motor de nível — Falta 1 (POC)
  *
  * Elo adaptado a pares. Internamente cada jogador tem um rating (1000 = nível 0, 2400 = nível 7);
  * a app mostra sempre a escala 0–7.
