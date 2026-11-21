@@ -1,0 +1,14 @@
+{
+  "name": "I Want to Play Padle",
+  "short_name": "Play Padle",
+  "description": "Encontra parceiro, adversários e campo de padel perto de ti.",
+  "lang": "pt-PT",
+  "start_url": "./index.html#jogar",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3f5ef",
+  "theme_color": "#0f3d2e",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
