@@ -61,9 +61,10 @@
    * @param {object} opts
    * @param {Object<string, number>} opts.initialLevels  id → nível inicial (autoavaliação, 0–7)
    * @param {object[]} opts.results  [{ id, date:'AAAA-MM-DD', teamA:[id,id], teamB:[id,id], sets:[[6,4],[6,3]], winner?:'a'|'b' }]
+   * @param {function} [opts.onGame]  chamada antes de cada jogo contar: onGame(result, { winner, eA })
    * @returns {{ players: Object<string, object>, pairs: Object<string, object> }}
    */
-  function computeRatings({ initialLevels = {}, results = [] }) {
+  function computeRatings({ initialLevels = {}, results = [], onGame = null }) {
     const players = {}, pairs = {};
     const player = (id) => players[id] || (players[id] = newPlayer(id in initialLevels ? initialLevels[id] : DEFAULT_LEVEL));
     Object.keys(initialLevels).forEach(player);
@@ -77,6 +78,8 @@
       const eA = expected(rA, rB);
       const M = marginMultiplier(r.sets, winner);
       const sA = winner === 'a' ? 1 : 0;
+      // Gancho para a época: probabilidade de cada equipa ganhar ANTES do jogo (para o bónus de surpresa).
+      if (onGame) onGame(r, { winner, eA });
 
       // Parelhas: começam na média individual no momento do primeiro jogo juntos.
       const pair = (ids, avgRating) => {

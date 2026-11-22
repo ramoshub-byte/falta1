@@ -28,7 +28,7 @@ O plano grátis só envia poucos emails por hora, o que pode bloquear inscriçõ
 ## 4. Copiar as chaves para a app
 
 1. **Project Settings** → **API** (ou **Data API**)
-2. Copia o **Project URL** e a chave **anon public**.
+2. Copia o **Project URL** (termina em `.supabase.co`, sem `/rest/v1/`) e a chave **anon public** ou **publishable**.
 3. Cola-as em `js/config.js`:
 
 ```js
@@ -49,7 +49,15 @@ O repositório chama-se `falta1`, por isso a app fica em `https://ramoshub-byte.
 
 ## Se já tinhas corrido o schema.sql antes
 
-Corre o `supabase/schema.sql` outra vez, inteiro. É seguro: as tabelas que já existem ficam como estão e só são criadas a tabela `game_results` e as funções novas (`submit_result`, `confirm_result`, `confirmed_results`).
+Corre o `supabase/schema.sql` outra vez, inteiro. É seguro: as tabelas que já existem e os dados ficam como estão. É criada a tabela `tournaments` (torneios), a opção `public_ranking` no perfil e as funções são atualizadas (resultados de torneio com confirmação e a função pública do ecrã do clube).
+
+### Marcador ao vivo (novembro 2026)
+
+Corre outra vez o `supabase/schema.sql` inteiro. Cria a tabela `live_scores` e as funções `push_live_score`, `clear_live_score` e `public_live_scores`. Só os 4 jogadores de um jogo podem enviar pontos, e só no dia do jogo. O ecrã do clube e o link de quem está a ver leem sem conta, e só aparecem jogos atualizados nos últimos 20 minutos.
+
+## Ecrã do clube
+
+Abre `https://ramoshub-byte.github.io/falta1/ecra.html?clube=cpc` no browser da TV (ou de um computador ligado à TV) e carrega em **Ecrã inteiro**. Troca `cpc` pelo id do clube em `js/data.js`.
 
 ## O que fica protegido
 
@@ -59,3 +67,5 @@ Corre o `supabase/schema.sql` outra vez, inteiro. É seguro: as tabelas que já 
 - A localização é guardada arredondada a cerca de 1 km.
 - Um resultado só pode ser confirmado por um jogador da outra equipa.
 - Os resultados confirmados (quem jogou com quem e o resultado) são visíveis a todos os inscritos, porque alimentam o ranking. O feedback e as avaliações continuam privados.
+- Os torneios são visíveis a todos os inscritos. Os resultados são registados por quem joga e confirmados pela outra equipa; só o organizador corrige, termina ou cancela.
+- O ecrã do clube (`ecra.html`) funciona sem conta, através da função `public_screen()`. Devolve só o nome curto ("Rui T.") de quem o permitir no perfil, o nível, os resultados confirmados e os torneios. Nunca devolve emails, localização, horários, feedback nem avaliações.

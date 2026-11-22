@@ -1,0 +1,127 @@
+/* Ecrã do clube (TV). Tamanhos em rem, que crescem com a largura do ecrã. */
+:root { --green: #0f3d2e; --green-2: #15553f; --green-3: #1d6a4f; --lime: #d4ff3a; --ink: #f2f7ef; --muted: rgba(242,247,239,.62); --line: rgba(255,255,255,.12); }
+* { box-sizing: border-box; }
+html { font-size: clamp(12px, 1.05vw, 30px); }
+html, body { margin: 0; height: 100%; }
+body { background: radial-gradient(120% 90% at 10% 0%, #17573f 0%, var(--green) 55%, #0a2c21 100%); color: var(--ink);
+  font-family: Inter, system-ui, sans-serif; display: grid; grid-template-rows: auto 1fr auto auto; overflow: hidden; }
+body.idle { cursor: none; }
+body.idle .tv-full { opacity: 0; pointer-events: none; }
+h2, .tv-title, .tv-brand span, .tv-clock b, .pts, .p, .tv-thead b { font-family: 'Barlow Condensed', Inter, sans-serif; letter-spacing: .01em; }
+
+.tv-top { display: flex; align-items: center; gap: 2rem; padding: 1.3rem 2.4rem .8rem; }
+.tv-brand { display: flex; align-items: center; gap: .7rem; font-size: 2rem; font-weight: 700; }
+.tv-brand svg { width: 2.4rem; height: 2.4rem; }
+.tv-brand b { color: var(--lime); }
+.tv-title { flex: 1; font-size: 2.6rem; font-weight: 700; text-align: center; }
+.tv-clock { display: flex; flex-direction: column; align-items: flex-end; line-height: 1.05; }
+.tv-clock span { color: var(--muted); font-size: 1rem; }
+.tv-clock b { font-size: 2.4rem; }
+
+.tv-main { padding: .4rem 2.4rem 1rem; min-height: 0; }
+.tv-main.in { animation: tvIn .6s ease both; }
+@keyframes tvIn { from { opacity: 0; transform: translateY(.8rem); } to { opacity: 1; transform: none; } }
+.tv-msg { display: grid; place-items: center; height: 100%; font-size: 2rem; color: var(--muted); }
+
+.tv-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; height: 100%; }
+.tv-two { display: grid; grid-template-columns: 1.1fr 1fr; gap: 1.6rem; }
+.tv-col { background: rgba(255,255,255,.05); border: 1px solid var(--line); border-radius: 1.2rem; padding: 1.1rem 1.3rem; min-width: 0; overflow: hidden; }
+.tv-col h2 { margin: 0 0 .6rem; font-size: 1.9rem; color: var(--lime); }
+.tv-col h2.mt { margin-top: 1.2rem; }
+
+.tv-list { list-style: none; margin: 0; padding: 0; }
+.tv-list li { display: grid; grid-template-columns: 2.4rem 1fr auto; align-items: center; gap: .8rem; padding: .48rem 0; border-bottom: 1px solid var(--line); }
+.tv-list li:last-child { border: 0; }
+.tv-list .p { font-size: 1.6rem; font-weight: 700; color: var(--muted); text-align: center; }
+.tv-list .n { font-size: 1.35rem; font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tv-list .n small { display: block; font-size: .85rem; font-weight: 400; color: var(--muted); }
+.tv-list .pts { font-size: 1.9rem; font-weight: 700; }
+.tv-list li.top .p { color: var(--green); background: var(--lime); border-radius: .5rem; }
+.tv-list li.top .pts { color: var(--lime); }
+.tv-list.compact li { padding: .3rem 0; }
+.tv-list.compact .n { font-size: 1.15rem; }
+.tv-list.compact .pts { font-size: 1.4rem; }
+.tv-empty, .tv-more { color: var(--muted); font-size: 1.05rem; }
+
+.tv-thead { display: flex; align-items: baseline; gap: 1.2rem; margin-bottom: 1rem; }
+.tv-thead b { font-size: 2.2rem; }
+.tv-thead span { color: var(--muted); font-size: 1.15rem; }
+.tv-tag { margin-left: auto; border: 1px solid var(--line); padding: .2rem .8rem; border-radius: 99px; }
+.tv-tag.live { color: var(--lime) !important; border-color: var(--lime); }
+
+.tv-games { list-style: none; margin: 0; padding: 0; }
+.tv-games li { display: grid; grid-template-columns: 7.5rem 1fr auto 1fr; gap: .8rem; align-items: center; padding: .6rem 0; border-bottom: 1px solid var(--line); font-size: 1.25rem; font-weight: 600; }
+.tv-games li:last-child { border: 0; }
+.tv-games .c { font-size: .9rem; color: var(--green); background: var(--lime); border-radius: .4rem; padding: .15rem .5rem; text-align: center; font-weight: 700; }
+.tv-games i { color: var(--muted); font-style: normal; font-size: 1rem; }
+.tv-games .w { color: var(--lime); }
+
+.tv-podium { display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.6rem; align-items: end; margin-top: 2rem; }
+.tv-podium > div { background: rgba(255,255,255,.06); border: 1px solid var(--line); border-radius: 1.4rem; padding: 2rem; display: grid; gap: .3rem; text-align: center; }
+.tv-podium .first { background: var(--lime); color: var(--green); padding: 3rem 2rem; }
+.tv-podium span { font-size: 4rem; }
+.tv-podium b { font: 700 3rem 'Barlow Condensed', sans-serif; }
+.tv-podium small { font-size: 1.2rem; opacity: .75; }
+
+.tv-champs { list-style: none; margin: 0; padding: 0; }
+.tv-champs li { padding: .45rem 0; font-size: 1.2rem; border-bottom: 1px solid var(--line); }
+.tv-champs small { display: block; color: var(--muted); font-size: .9rem; margin-left: 1.7rem; }
+
+.tv-progress { height: .3rem; background: rgba(255,255,255,.08); }
+.tv-progress i { display: block; height: 100%; width: 0; background: var(--lime); }
+.tv-foot { display: flex; gap: 2rem; justify-content: space-between; padding: .8rem 2.4rem 1rem; font-size: 1rem; color: var(--muted); }
+.tv-foot b { color: var(--ink); }
+.tv-full { position: fixed; right: 1rem; bottom: 4.5rem; background: rgba(0,0,0,.35); color: #fff; border: 1px solid var(--line); border-radius: .6rem; padding: .5rem .9rem; font: 600 .9rem Inter, sans-serif; cursor: pointer; transition: opacity .3s; }
+
+@media (max-width: 800px) {
+  html { font-size: 13px; }
+  body { overflow: auto; }
+  .tv-cols, .tv-two, .tv-podium { grid-template-columns: 1fr; }
+  .tv-title { font-size: 1.6rem; }
+  .tv-foot { flex-direction: column; gap: .4rem; }
+}
+
+/* ao vivo */
+.lv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; align-content: start; }
+.lv-grid.n1 { grid-template-columns: 1fr; max-width: 70rem; margin: 2rem auto 0; }
+.lv-card { background: rgba(255,255,255,.06); border: 1px solid var(--line); border-radius: 1.2rem; padding: 1.1rem 1.4rem; min-width: 0; }
+.lv-head { display: flex; align-items: center; gap: 1rem; color: var(--muted); font-size: 1.05rem; margin-bottom: .7rem; }
+.lv-head .tv-tag { margin-left: 0; }
+.lv-age { margin-left: auto; color: #ffb38a; }
+.lv-table { width: 100%; border-collapse: separate; border-spacing: 0 .4rem; }
+.lv-table th { text-align: left; font-size: 1.5rem; font-weight: 600; padding: .5rem .8rem; border-radius: .7rem 0 0 .7rem; background: rgba(255,255,255,.05);
+  width: 100%; max-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lv-table tr.ta th { box-shadow: inset .35rem 0 0 #3fbf93; }
+.lv-table tr.tb th { box-shadow: inset .35rem 0 0 #ff7a45; }
+.lv-table th em { font-style: normal; color: var(--muted); margin: 0 .5rem; }
+.lv-table th .srv { color: var(--lime); }
+.lv-table th i { font-style: normal; }
+.lv-table td { font-family: 'Barlow Condensed', Inter, sans-serif; font-weight: 700; font-size: 2rem; text-align: center; min-width: 3rem; padding: 0 .4rem;
+  background: rgba(255,255,255,.05); color: var(--muted); }
+.lv-table td:last-child { border-radius: 0 .7rem .7rem 0; }
+.lv-table td.won { color: var(--ink); }
+.lv-table td.cur { color: var(--ink); background: rgba(255,255,255,.12); }
+.lv-table td.pts { color: var(--green); background: var(--lime); min-width: 4.4rem; }
+.lv-table tr.win th { color: var(--lime); }
+.lv-note { margin-top: .5rem; text-align: center; font-size: 1.2rem; font-weight: 600; color: var(--lime); }
+.lv-note.swap { background: var(--lime); color: var(--green); border-radius: .6rem; padding: .2rem 0; }
+.lv-card.big .lv-table th { font-size: 2.6rem; padding: .9rem 1.2rem; }
+.lv-card.big .lv-table td { font-size: 3.6rem; min-width: 5rem; }
+.lv-card.big .lv-table td.pts { min-width: 7rem; }
+.lv-card.big .lv-note { font-size: 1.8rem; }
+.tv-msg small { display: block; font-size: 1.1rem; margin-top: .6rem; }
+
+/* link de um jogo (?jogo=…): também tem de ficar bem num telemóvel */
+html.single { font-size: clamp(11px, 1.9vw, 30px); }
+html.single .tv-progress, html.single .tv-rules { display: none; }
+html.single body { overflow: auto; }
+@media (max-width: 700px) {
+  html.single .tv-top { padding: 1rem 1.2rem .6rem; gap: 1rem; }
+  html.single .tv-main { padding: .4rem 1rem 1rem; }
+  html.single .lv-grid.n1, html.single .lv-card { margin-top: .6rem; }
+  html.single .lv-card.big .lv-table th { font-size: 1.7rem; padding: .7rem .8rem; white-space: normal; }
+  html.single .lv-card.big .lv-table th em { display: none; }
+  html.single .lv-card.big .lv-table th span { display: block; }
+  html.single .lv-card.big .lv-table td { font-size: 2.8rem; min-width: 3.2rem; }
+  html.single .lv-card.big .lv-table td.pts { min-width: 4.6rem; }
+}

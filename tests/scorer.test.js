@@ -87,4 +87,63 @@ test('resultado escrito à mão', () => {
   assert.strictEqual(S.parseSets('olá'), null);
 });
 
+test('serviço roda pelos 4 jogadores, a começar pela equipa escolhida', () => {
+  const who = (pts, cfg) => { const v = S.server(S.compute(pts, cfg)); return v.team + v.idx; };
+  assert.strictEqual(who([]), 'a0');
+  assert.strictEqual(who(game('a')), 'b0');
+  assert.strictEqual(who(games('a', 2)), 'a1');
+  assert.strictEqual(who(games('a', 3)), 'b1');
+  assert.strictEqual(who(games('a', 4)), 'a0');
+  assert.strictEqual(who([], { firstServer: 'b' }), 'b0');
+  assert.strictEqual(who(game('a'), { firstServer: 'b' }), 'a0');
+});
+
+test('lado do serviço: direita com pontos pares, esquerda com ímpares', () => {
+  assert.strictEqual(S.server(S.compute([])).side, 'direita');
+  assert.strictEqual(S.server(S.compute(['a'])).side, 'esquerda');
+  assert.strictEqual(S.server(S.compute(['a', 'b'])).side, 'direita');
+});
+
+test('troca de lado depois dos jogos ímpares', () => {
+  assert.strictEqual(S.compute(game('a')).changeEnds, true);           // 1-0
+  assert.strictEqual(S.compute(games('a', 2)).changeEnds, false);      // 2-0
+  assert.strictEqual(S.compute([...games('a', 2), 'b']).changeEnds, false);
+  assert.strictEqual(S.compute(games('a', 3)).changeEnds, true);       // 3-0
+  assert.strictEqual(S.compute(game('a')).swapped, true);
+  assert.strictEqual(S.compute(games('a', 2)).swapped, true);
+  assert.strictEqual(S.compute(games('a', 3)).swapped, false);
+});
+
+test('fim de set: troca só se o número de jogos for ímpar', () => {
+  // 6-0: 6 jogos → sem troca no fim do set
+  assert.strictEqual(S.compute(games('a', 6)).changeEnds, false);
+  // 6-3: 9 jogos → troca
+  const s63 = S.compute([...games('b', 3), ...games('a', 6)]);
+  assert.deepStrictEqual(s63.sets, [[6, 3]]);
+  assert.strictEqual(s63.changeEnds, true);
+});
+
+test('tie-break: troca a cada 6 pontos e serviço 1-2-2', () => {
+  const toSix = [...games('a', 5), ...games('b', 5), ...game('a'), ...game('b')];   // 12 jogos → serve o 1.º outra vez
+  const at = (extra) => S.compute([...toSix, ...extra]);
+  const sv = (extra) => { const v = S.server(at(extra)); return v.team + v.idx; };
+  assert.strictEqual(sv([]), 'a0');
+  assert.strictEqual(sv(['a']), 'b0');
+  assert.strictEqual(sv(['a', 'b']), 'b0');
+  assert.strictEqual(sv(['a', 'b', 'a']), 'a1');
+  assert.strictEqual(at(rep('a', 5)).changeEnds, false);
+  assert.strictEqual(at([...rep('a', 3), ...rep('b', 3)]).changeEnds, true);
+  // depois do tie-break (13.º jogo), o set seguinte começa com quem recebeu primeiro no tie-break
+  const after = at(rep('a', 7));
+  assert.deepStrictEqual(after.sets, [[7, 6]]);
+  assert.strictEqual(after.changeEnds, true);
+  assert.strictEqual(S.server(after).team, 'b');
+});
+
+test('jogo terminado: ninguém serve e não há troca', () => {
+  const s = S.compute(games('a', 12));
+  assert.strictEqual(S.server(s), null);
+  assert.strictEqual(s.changeEnds, false);
+});
+
 console.log(`\n${passed} testes passaram.\n`);

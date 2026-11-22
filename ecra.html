@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Falta 1 — ranking da época</title>
+  <meta name="theme-color" content="#0f3d2e">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/ecra.css">
+</head>
+<!--
+  Ecrã público para os clubes (TV). Não precisa de conta.
+  Parâmetros opcionais no endereço:
+    ?clube=cpc      mostra os torneios desse clube (ids em js/data.js) e o nome do clube no topo
+    &seg=15         segundos por ecrã (por defeito 15)
+    &so=ranking     fica só num ecrã: ranking | torneio | destaques | aovivo
+    ?jogo=ID        mostra só um jogo ao vivo, em grande (o link que os jogadores partilham no marcador)
+-->
+<body>
+  <header class="tv-top">
+    <div class="tv-brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#d4ff3a"/><path d="M6 11c6 2 14 2 20 0M6 21c6-2 14-2 20 0" stroke="#0f3d2e" stroke-width="2" fill="none"/></svg>
+      <span>Falta <b>1</b></span>
+    </div>
+    <div class="tv-title" id="tv-title">Ranking da época</div>
+    <div class="tv-clock"><span id="tv-club"></span><b id="tv-time">--:--</b></div>
+  </header>
+  <main id="tv-main" class="tv-main"><div class="tv-msg">A carregar…</div></main>
+  <div class="tv-progress"><i id="tv-bar"></i></div>
+  <footer class="tv-foot">
+    <div class="tv-rules" id="tv-rules"></div>
+    <div class="tv-join" id="tv-join"></div>
+  </footer>
+  <button id="tv-full" class="tv-full" title="Ecrã inteiro">⛶ Ecrã inteiro</button>
+
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/matchmaking.js"></script>
+  <script src="js/rating.js"></script>
+  <script src="js/scorer.js"></script>
+  <script src="js/season.js"></script>
+  <script src="js/tournament.js"></script>
+  <script src="js/backend.js"></script>
+  <script src="js/ecra.js"></script>
+</body>
+</html>

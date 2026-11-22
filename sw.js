@@ -1,7 +1,7 @@
 // Service worker simples: guarda a "casca" da app para abrir mesmo sem rede.
-const CACHE = 'falta1-v4';
+const CACHE = 'falta1-v7';
 const SHELL = [
-  './', './index.html', './css/styles.css', './js/config.js', './js/data.js', './js/matchmaking.js', './js/rating.js', './js/scorer.js', './js/backend.js', './js/app.js',
+  './', './index.html', './css/styles.css', './js/config.js', './js/data.js', './js/matchmaking.js', './js/rating.js', './js/scorer.js', './js/season.js', './js/tournament.js', './js/backend.js', './js/app.js',
   './manifest.webmanifest', './icons/icon.svg'
 ];
 
